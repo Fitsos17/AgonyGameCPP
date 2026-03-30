@@ -19,7 +19,10 @@ int getValidatedInput(string prompt, string errorPrompt, function<bool(int)> isI
     if(cin >> input) {
       // check if the input is valid regarding to the function "checker" provided.
       // if not, output the errorPrompt provided and clear the buffer
-      if (isInputValid(input)) return input;
+      if (isInputValid(input)) {
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        return input;
+      }
       cout << errorPrompt;
     } else {
       cout << "Bad input. Please enter the integer that you are asked: ";

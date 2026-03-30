@@ -32,7 +32,7 @@ void Player::handleAcePlay () {
   for (int i = SPADES; i <= CLUBS; i++) {
     cout << i + 1 << ". " << SUITS[i] << endl;
   }
-  int pickedSuitInt = getValidatedInput("Choose card suit: ", "Suit does not exist. Please enter a valid suit: ", [](int input) { return input >= SPADES && input <= CLUBS; });
+  int pickedSuitInt = getValidatedInput("Choose card suit: ", "Suit does not exist. Please enter a valid suit: ", [](int input) { return (input - 1) >= SPADES && (input - 1) <= CLUBS; });
   SuitEnum acePickedSuit = (SuitEnum)pickedSuitInt;
 
   Card acePickedCard(acePickedSuit, acePickedRank);
@@ -47,7 +47,7 @@ bool Player::handleSevenPlay (int& stackedSevens) {
   // to check if current player has another seven
   // to counter, or then he must take 2 cards. 
   int handSize = hand.size();
-  cout << "\nOh no! Another player dropped a seven. Checking cards to see if you have another seven to counter..." << endl;
+  cout << "\nOh no! Other players dropped a seven. Checking cards to see if you have another seven to counter..." << endl;
   for (int i = 0; i < handSize; i++) {
     if (hand[i].rank == SEVEN) {
       // seven found. Play it for counter and erase it from the hand
@@ -59,7 +59,7 @@ bool Player::handleSevenPlay (int& stackedSevens) {
   }
 
   int numberOfCardsToDraw = stackedSevens * DRAW_PER_SEVEN;
-  cout << "Unlucky, you did not have a seven to counter. You drew the following " << numberOfCardsToDraw << " cards" << endl;
+  cout << "Unlucky, you did not have a seven to counter. Because " << stackedSevens << " seven(s) has been dropped, you will draw the following " << numberOfCardsToDraw << " cards" << endl;
 
   for (int i = 0; i < numberOfCardsToDraw; i++) {
     drawCard();

@@ -73,6 +73,6 @@ void clearScreen() {
 void waitForPlayer(string playerName) {
   cout << "PASS THE COMPUTER TO " << playerName << "!" << endl;
   cout << playerName << ", when you are ready press enter to reveal your cards" << endl;
-  cin.ignore(numeric_limits<streamsize>::max(), '\n');
+  getchar();
   clearScreen();
 }
